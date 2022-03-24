@@ -14,7 +14,9 @@ function UserLoginPage() {
     const onFinish = async (values) => {
 
         let response = await AccountService.loginAccount(values)
-        if (response) {
+        console.log('response', response);
+
+        if (response.isSucceeded) {
             localStorage.setItem('isAuthenticated', 'true');
             localStorage.setItem('email', values.Email);
             console.log('response', response);
@@ -32,7 +34,7 @@ function UserLoginPage() {
         else {
             setalertSuccessShow(false);
             setalertWarningShow(true);
-            setalertText(response.errormessage)
+            setalertText(response.errorMessage)
         }
 
 
